@@ -16,14 +16,16 @@ repositories {
     mavenCentral()
 }
 
-configurations.register("bhTestImplementation")
+configurations {
+    bhTestImplementation.extendsFrom(testImplementation)
+    bhTestRuntimeOnly.extendsFrom(testRuntimeOnly)
+}
 
 def test = tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform() {
         excludeTags "BH"
     }
-    jvmArgs '-XX:+AllowRedefinitionToAddDeleteMethods'
 }
 
 def bhTest = tasks.register("bhTest", Test) {
@@ -34,20 +36,17 @@ def bhTest = tasks.register("bhTest", Test) {
     maxParallelForks = 1
     jvmArgs '-XX:+AllowRedefinitionToAddDeleteMethods'
     shouldRunAfter test
+    classpath = sourceSets.test.runtimeClasspath + configurations.bhTestImplementation + configurations.bhTestRuntimeOnly
 }
 
 tasks.named("check") {
     dependsOn bhTest
 }
 
-configurations {
-    bhTestImplementation.extendsFrom(testImplementation)
-}
-
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
-    testImplementation 'io.projectreactor.tools:blockhound-junit-platform:1.0.6.RELEASE'
+    bhTestImplementation 'io.projectreactor.tools:blockhound-junit-platform:1.0.6.RELEASE'
     // https://mvnrepository.com/artifact/io.projectreactor.tools/blockhound
 //    bhTestImplementation 'io.projectreactor.tools:blockhound:1.0.6.RELEASE'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.0.0'
