@@ -32,8 +32,6 @@ def bhTest = tasks.register("bhTest", Test) {
     useJUnitPlatform {
         includeTags "BH"
     }
-    forkEvery = 1
-    maxParallelForks = 1
     jvmArgs '-XX:+AllowRedefinitionToAddDeleteMethods'
     shouldRunAfter test
     classpath = sourceSets.test.runtimeClasspath + configurations.bhTestImplementation + configurations.bhTestRuntimeOnly
@@ -47,9 +45,7 @@ dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     bhTestImplementation 'io.projectreactor.tools:blockhound-junit-platform:1.0.6.RELEASE'
-    // https://mvnrepository.com/artifact/io.projectreactor.tools/blockhound
-//    bhTestImplementation 'io.projectreactor.tools:blockhound:1.0.6.RELEASE'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.0.0'
+    bhTestRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.0.0'
 
 
     // This dependency is used by the application.
