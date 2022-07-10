@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class NonBlockingUserRepository implements UserRepository {
+
     @Override
     public Flux<User> findUsers() {
         return Flux.<Integer>generate(sink -> sink.next(Math.abs(ThreadLocalRandom.current().nextInt(100))))

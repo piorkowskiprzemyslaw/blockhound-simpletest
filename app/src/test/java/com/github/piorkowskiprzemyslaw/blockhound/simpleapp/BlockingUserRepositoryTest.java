@@ -1,13 +1,11 @@
 package com.github.piorkowskiprzemyslaw.blockhound.simpleapp;
 
-import com.github.piorkowskiprzemyslaw.blockhound.simpleapp.test.annotations.NonBlocking;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import reactor.core.scheduler.Schedulers;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@NonBlocking
 class BlockingUserRepositoryTest {
