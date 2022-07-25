@@ -50,7 +50,7 @@ dependencies {
     bhTestRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.0.0'
 
     implementation 'org.codehaus.groovy:groovy:3.0.10'
-    testImplementation platform("org.spockframework:spock-bom:2.1-groovy-3.0")
+    testImplementation platform("org.spockframework:spock-bom:2.2-M3-groovy-3.0")
     testImplementation "org.spockframework:spock-core"
 
     // This dependency is used by the application.

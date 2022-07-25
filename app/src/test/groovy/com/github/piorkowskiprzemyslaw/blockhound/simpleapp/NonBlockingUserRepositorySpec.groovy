@@ -2,7 +2,9 @@ package com.github.piorkowskiprzemyslaw.blockhound.simpleapp
 
 import reactor.core.scheduler.Schedulers
 import spock.lang.Specification
+import spock.lang.Tag
 
+@Tag("BH")
 class NonBlockingUserRepositorySpec extends Specification {
 
     def "should return specific number of users"() {
